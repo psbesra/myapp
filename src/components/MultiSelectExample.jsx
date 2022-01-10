@@ -29,7 +29,7 @@ const MultiSelectExample=({open})=> {
           {option.title}
         </li>
       )}
-      style={{ width: 500 }}
+      //style={{ width: 500 }}
       renderInput={(params) => (
         <TextField {...params} label="Checkboxes" placeholder="Favorites" />
       )}

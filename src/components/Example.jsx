@@ -43,6 +43,10 @@ const Example=()=> {
   const handleChange=(event)=>{
     setInputVal(event.target.value);
   }
+  
+  const handleDelete=()=>{
+
+  }
 
   return (
     <div>
@@ -54,7 +58,7 @@ const Example=()=> {
         aria-haspopup="true"
         onClick={handleClick}
         label="Click"
-        onDelete={null}
+        onDelete={handleDelete}
       />
         
       
