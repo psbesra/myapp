@@ -13,4 +13,6 @@ const useCapsuleStyle = makeStyles({
 	}
 });
 
+
+
 export default useCapsuleStyle;

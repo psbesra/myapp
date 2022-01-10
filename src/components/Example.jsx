@@ -1,59 +1,85 @@
-import { Button, Chip, Paper } from "@mui/material";
-import { styled } from "@mui/system";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import CancelIcon from '@mui/icons-material/Cancel';
 
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Chip, TextField } from '@mui/material';
+import { useState } from 'react';
+import MultiSelectExample from './MultiSelectExample';
 
-const Example=()=>{
+const options = [
+  'None',
+  'Atria',
+  'Callisto',
+  'Dione',
+  'Ganymede',
+  'Hangouts Call',
+  'Luna',
+  'Oberon',
+  'Phobos',
+  'Pyxis',
+  'Sedna',
+  'Titania',
+  'Triton',
+  'Umbriel',
+];
 
-  const customStyle={
-    width:200,
-    backgroundColor:"#F9F8F8",
-    display: "flex",
-    justifyContent: "space-between",
-    "& .MuiChip-label":{
-      color:"#0083C6",
+const ITEM_HEIGHT = 48;
+
+const Example=()=> {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const [inputVal, setInputVal]=useState('');
+  const [openMenu, setOpenMenu]=useState(false);
+  const handleClick = (event) => {
+    setOpenMenu(true);
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
+
+  const handleChange=(event)=>{
+    setInputVal(event.target.value);
+  }
+
+  return (
+    <div>
+      <Chip
+        aria-label="more"
+        id="long-button"
+        aria-controls={open ? 'long-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+        label="Click"
+        onDelete={null}
+      />
+        
       
-    },
-    "& .MuiChip-icon":{
-      order:1,
-      marginLeft:6,
-      color:"#2EA7E5",
-      cursor:"pointer",
-      "&:hover":{
-        color:"#2EA7E5",
+      {
+        openMenu
+        &&
+        <MultiSelectExample
+            id="long-menu"
+            MenuListProps={{
+            'aria-labelledby': 'long-button',
+            }}
+            anchorEl={anchorEl}
+            open={openMenu}
+            onClose={handleClose}
+            PaperProps={{
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                
+            },
+            }}
+        />
+        
+      
       }
-    },
-    "& .MuiChip-deleteIcon":{
-      order:2,
-      color:"#2EA7E5",
-      "&:hover":{
-        color:"#2EA7E5",
-      }
-    },
-    
-    
-  }
-
-  const handleDelete=()=>{
-
-  }
-
-  
-
-  return(
-  <>
-    
-    <Chip 
-      icon={<ArrowDropDownIcon/>} 
-      onDelete={handleDelete}
-      deleteIcon={<CancelIcon/>}
-      label="MyChip"
-      variant="outlined"
-      sx={{...customStyle}}
-    />
-    
-  </>
+    </div>
   );
 }
 

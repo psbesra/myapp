@@ -1,17 +1,20 @@
 
 import './App.css';
 import Example from './components/Example';
+import MultiSelectExample from './components/MultiSelectExample';
 
 function App() {
   return (
     <div className="App">
 
-      <label>
-        <Example/>
-      </label>
-      <label>
-        <Example/>
-      </label>
+      <div style={{display:'flex'}}>
+        <span style={{padding:4}}>
+          <Example/>
+        </span>
+        
+      </div>
+      
+
       
     </div>
   );
